@@ -24,7 +24,7 @@ Pick one.
 | Oracle Cloud always-free Ampere VM | Fine if you can get one | $0 | Capacity is often unavailable. Still need a domain or a tunnel |
 | Fly.io shared-1cpu-256mb or 512mb, one machine, not scale-to-zero | Fine | about $2–5 / month | Set `min_machines_running = 1`. Mount a volume so `data/` survives deploys |
 | Railway / Render **paid** web service that does not sleep | Fine | about $5–7 / month | They set `PORT`. Use the `Procfile`. Attach a disk if you care about dedupe across deploys |
-| Home PC or a laptop in Aba | Only for a weekend test | electricity + data | Power and uplink will drop. Do not point live Paystack here |
+| Home PC or a laptop | Only for a weekend test | electricity + data | Power and uplink will drop. Do not point live Paystack here |
 | AWS Lambda, Vercel, Cloudflare Workers | No | — | The Discord gateway is a long-lived socket. Webhooks alone could be split out later; it is not worth it at this size |
 
 A domain is optional. Fly, Railway, and Render give you an HTTPS hostname. A VPS needs either a domain (~$10 / year) plus Caddy, or a Cloudflare Tunnel to a hostname you already have. Paystack and Shopify both require HTTPS.

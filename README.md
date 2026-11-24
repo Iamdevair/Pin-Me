@@ -136,7 +136,7 @@ Polling is the default. It is enough for a handful of addresses and stays inside
 | Alchemy Address Activity | Push, no polling. Signing key in the webhook details | `ALCHEMY_WEBHOOK_SIGNING_KEY` |
 | Moralis Streams | Push. Streams secret, **not** the API key. Header `x-signature` | `MORALIS_STREAMS_SECRET` |
 
-Chains wired today: Ethereum, Base, Polygon, BNB Smart Chain, Arbitrum, Optimism, Celo, TRON. Celo transfer history uses Celoscan's v1 API; balances still use your Celo RPC.
+Chains wired today: Ethereum, Sepolia, Base, Polygon, BNB Smart Chain, Arbitrum, Optimism, Celo, TRON. Celo transfer history uses Celoscan's v1 API; balances still use your Celo RPC. Sepolia uses the same poller as mainnet with chain id `11155111` and `SEPOLIA_RPC_URL`.
 
 The first successful poll stores a baseline and does **not** alert. Later polls alert when the balance moves by at least `min_change`. A gap while the process is down still shows up as a balance delta. A burst of more than 20 transfers during the gap can skip individual transaction alerts; the balance alert still fires. That limit is the `offset: 20` in the explorer call.
 

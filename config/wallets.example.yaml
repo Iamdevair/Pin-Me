@@ -43,6 +43,17 @@ wallets:
     #     decimals: 6
     #     min_change: "1"
 
+  - id: test-sepolia
+    label: Sepolia ETH
+    enabled: false
+    provider: evm
+    chain: sepolia
+    address: "0xREPLACE_ME"
+    rpc_env: SEPOLIA_RPC_URL
+    min_change: "0.0001"
+    watch:
+      - native_balance
+
   - id: ops-tron
     label: Ops TRON
     enabled: false

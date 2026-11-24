@@ -24,6 +24,8 @@ class EvmChain:
 
 EVM_CHAINS: dict[str, EvmChain] = {
     "ethereum": EvmChain("ethereum", 1, "ETH", 18, "etherscan_v2", "https://api.etherscan.io/v2/api"),
+    # Sepolia is Ethereum's testnet. Same balance poller, different chain id and RPC URL.
+    "sepolia": EvmChain("sepolia", 11155111, "ETH", 18, "etherscan_v2", "https://api.etherscan.io/v2/api"),
     "base": EvmChain("base", 8453, "ETH", 18, "etherscan_v2", "https://api.etherscan.io/v2/api"),
     "polygon": EvmChain("polygon", 137, "POL", 18, "etherscan_v2", "https://api.etherscan.io/v2/api"),
     "bsc": EvmChain("bsc", 56, "BNB", 18, "etherscan_v2", "https://api.etherscan.io/v2/api"),

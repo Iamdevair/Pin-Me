@@ -24,6 +24,7 @@ from pinme.paystack.signatures import verify_paystack
 from pinme.routing import Route, RouteTable, resolve_channel
 from pinme.shopify.handlers import to_alert as shopify_alert
 from pinme.shopify.signatures import verify_shopify
+from pinme.wallets.chains import EVM_CHAINS
 from pinme.wallets.delta import balance_direction
 from pinme.wallets.models import WalletFile, WalletSpec, load_wallet_file
 from pinme.wallets.providers.evm import EvmProvider
@@ -32,6 +33,11 @@ from pinme.wallets.providers.tron import _trc20_map
 from pinme.wallets.state import WalletState
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+def test_sepolia_is_a_known_chain():
+    assert EVM_CHAINS["sepolia"].chain_id == 11155111
+    assert EVM_CHAINS["sepolia"].symbol == "ETH"
 
 
 def test_balance_direction_baselines_once_then_respects_dust():
@@ -86,7 +92,7 @@ def test_routes_prefer_exact_event_over_wildcard():
 def test_example_yaml_files_load():
     wallets = load_wallet_file(ROOT / "config" / "wallets.example.yaml")
     assert wallets.poll_seconds >= 15
-    assert {wallet.id for wallet in wallets.wallets} == {"main-eth", "ops-tron"}
+    assert {wallet.id for wallet in wallets.wallets} == {"main-eth", "test-sepolia", "ops-tron"}
     assert wallets.wallets[0].enabled is False
 
 

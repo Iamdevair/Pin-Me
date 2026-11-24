@@ -193,6 +193,7 @@ def chain_line(wallet: WalletSpec) -> str:
 def _explorer_tx(chain: str, tx_hash: str) -> str | None:
     hosts = {
         "ethereum": "https://etherscan.io/tx/",
+        "sepolia": "https://sepolia.etherscan.io/tx/",
         "base": "https://basescan.org/tx/",
         "polygon": "https://polygonscan.com/tx/",
         "bsc": "https://bscscan.com/tx/",

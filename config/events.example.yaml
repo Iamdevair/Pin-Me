@@ -1,0 +1,57 @@
+# Which upstream events become Discord alerts.
+# An event not listed here is acknowledged (HTTP 200) and dropped,
+# so Paystack and Shopify do not retry it forever.
+# Use "*" to allow every event from that source.
+#
+# Adding an event that already has a writer in the handlers file
+# changes the wording. An event with no writer still posts a generic alert.
+# You do not have to touch Python to subscribe or unsubscribe.
+
+paystack:
+  enabled: true
+  include_customer_email: true
+  allow:
+    - charge.success
+    - charge.failed
+    - transfer.success
+    - transfer.failed
+    - transfer.reversed
+    - refund.processed
+    - refund.failed
+    - invoice.payment_failed
+    - subscription.create
+    - subscription.disable
+    # Also available (uncomment to pin them):
+    # - charge.dispute.create
+    # - charge.dispute.remind
+    # - charge.dispute.resolve
+    # - customeridentification.success
+    # - customeridentification.failed
+    # - dedicatedaccount.assign.success
+    # - dedicatedaccount.assign.failed
+    # - invoice.create
+    # - invoice.update
+    # - paymentrequest.pending
+    # - paymentrequest.success
+    # - refund.pending
+    # - refund.processing
+    # - subscription.expiring_cards
+    # - subscription.not_renew
+
+shopify:
+  enabled: true
+  allow:
+    - orders/create
+    - orders/paid
+    - orders/cancelled
+    - orders/updated
+    - refunds/create
+    - fulfillments/create
+    # Noisy. Uncomment if you really want a ping on every product edit.
+    # - products/create
+    # - products/update
+    # - inventory_levels/update
+    # - customers/create
+    # - customers/update
+    # - checkouts/create
+    # - app/uninstalled

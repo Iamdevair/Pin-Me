@@ -1,0 +1,34 @@
+# Where alerts go inside Discord.
+# Turn on Developer Mode (Settings → Advanced), then right-click a channel
+# and Copy Channel ID. Paste the id as a quoted string.
+#
+# Matching order:
+#   1. source + exact event
+#   2. source + event: "*"
+#   3. source: "*" + event: "*"
+#   4. default_channel_id
+#
+# Restart the bot after edits. No code change required.
+
+default_channel_id: "REPLACE_ME"
+
+routes:
+  - source: wallets
+    event: "*"
+    channel_id: "REPLACE_ME"
+
+  - source: paystack
+    event: charge.success
+    channel_id: "REPLACE_ME"
+
+  - source: paystack
+    event: "*"
+    channel_id: "REPLACE_ME"
+
+  - source: shopify
+    event: orders/paid
+    channel_id: "REPLACE_ME"
+
+  - source: shopify
+    event: "*"
+    channel_id: "REPLACE_ME"

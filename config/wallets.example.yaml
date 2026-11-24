@@ -1,0 +1,62 @@
+# Wallets Pin Me watches.
+# Add or remove a wallet by editing this file only. Restart the bot after.
+# Copy to config/wallets.yaml (gitignored) before putting in real addresses.
+#
+# provider: evm | tron
+#   evm  — any JSON-RPC chain listed in pinme/wallets/chains.py
+#   tron — TronGrid account + TRC-20
+#
+# watch:
+#   native_balance   — alert when the coin balance moves by at least min_change
+#   token_balance    — same, for each entry under tokens
+#   transfers        — alert per new transaction (needs an explorer key, or TronGrid)
+#
+# The first successful poll sets a baseline and does NOT alert.
+# API keys are never written here. rpc_env / api_key_env name a variable in .env.
+
+poll_seconds: 60
+
+webhook_providers:
+  alchemy:
+    enabled: false
+    signing_key_env: ALCHEMY_WEBHOOK_SIGNING_KEY
+  moralis:
+    enabled: false
+    secret_env: MORALIS_STREAMS_SECRET
+
+wallets:
+  - id: main-eth
+    label: Main ETH
+    enabled: false
+    provider: evm
+    chain: ethereum
+    address: "0xREPLACE_ME"
+    rpc_env: ETH_RPC_URL
+    min_change: "0.0001"
+    watch:
+      - native_balance
+      # - token_balance
+      # - transfers
+    # tokens:
+    #   - symbol: USDC
+    #     contract: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+    #     decimals: 6
+    #     min_change: "1"
+
+  - id: ops-tron
+    label: Ops TRON
+    enabled: false
+    provider: tron
+    chain: tron
+    address: TREPLACE_ME
+    api_key_env: TRONGRID_API_KEY
+    min_change: "1"
+    watch:
+      - native_balance
+      # - token_balance
+      # - transfers
+    # tokens:
+    #   - symbol: USDT
+    #     contract: TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
+    #     decimals: 6
+    #     min_change: "1"
